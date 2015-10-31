@@ -24,7 +24,7 @@ def get_args():
     """get all args"""
     parser = argparse.ArgumentParser(
         description='Simple cli search for ixirc',
-        epilog="More info later.")
+        epilog="Made by shaggy")
     parser.add_argument('-V', '-v', '--version', action='version',
                         version='%(prog)s ' + "0.1")
     parser.add_argument(
@@ -54,9 +54,9 @@ search, chanid, page, reverse = get_args()
 
 
 def print_search():
-    weathers = requests.get("http://ixirc.com/api/?q=%s&cid=%s" % (search,
+    searches = requests.get("http://ixirc.com/api/?q=%s&cid=%s" % (search,
                             chanid)).json()
-    jsonData = json.loads(str(weathers).replace("'", '"'))
+    jsonData = json.loads(str(searches).replace("'", '"'))
     jsons = jsonData['results']
     for er in reversed(jsons):
         title = er['name']
