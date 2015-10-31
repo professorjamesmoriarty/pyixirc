@@ -1,9 +1,11 @@
+import sys
 import json
 import requests
+import argparse
 
 url = "http://ixirc.com/api/?q="
-search = "linux"
-chanid = "92"
+search = ""
+chanid = ""
 
 
 class tcolors:
@@ -16,6 +18,35 @@ class tcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+
+
+def get_args():
+    """get all args"""
+    parser = argparse.ArgumentParser(
+        description='Simple cli search for ixirc',
+        epilog="More info later.")
+    parser.add_argument('-V', '-v', '--version', action='version',
+                        version='%(prog)s ' + "0.1")
+    parser.add_argument(
+        '-s', '--search', type=str, help='search string',
+        required=False, default=None)
+    parser.add_argument(
+        '-c', '--chanid', type=str, help='channel id, see list:',
+        required=False, default=None)
+    parser.add_argument(
+        '-p', '--page', action='store_true', help='page number',
+        required=False)
+    args = parser.parse_args()
+    search = args.search
+    chanid = args.chanid
+    page = args.page
+    conflictdate = args.chanid, args.page
+    if all(conflictdate):
+        sys.exit('Conflict in options: can not use \
+                page option with chanid.')
+    return search, chanid, page
+
+search, chanid, page = get_args()
 
 
 def print_search():
@@ -35,4 +66,10 @@ def print_search():
         print(tcolors.RED + size + tcolors.YELLOW + " /msg",
               botn, "xdcc send", packn)
 
-print_search()
+
+def main():
+    print_search()
+
+
+if __name__ == '__main__':
+    main()
