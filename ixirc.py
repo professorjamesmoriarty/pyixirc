@@ -58,13 +58,13 @@ def print_search():
                             chanid)).json()
     jsonData = json.loads(str(searches).replace("'", '"'))
     jsons = jsonData['results']
-    for er in reversed(jsons):
-        title = er['name']
-        packn = er['n']
-        botn = er['uname']
-        chan = er['cname']
-        netw = er['naddr']
-        size = er['szf']
+    for item in reversed(jsons):
+        title = item['name']
+        packn = item['n']
+        botn = item['uname']
+        chan = item['cname']
+        netw = item['naddr']
+        size = item['szf']
         print(tcolors.RED + title + tcolors.GREEN + " from", chan,
               tcolors.BLUE + "on", netw + tcolors.ENDC)
         print(tcolors.RED + size + tcolors.YELLOW + " /msg",

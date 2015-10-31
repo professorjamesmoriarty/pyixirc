@@ -11,5 +11,5 @@ More info soon
 - [ ] search different pages
 - [ ] reverse order
 - [ ] alternate colors of results
-
-
+- [ ] possibly turnicate long results (as an option)
+- [ ] filter results (example nothing with |p| )
