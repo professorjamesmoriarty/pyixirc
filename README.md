@@ -1,4 +1,6 @@
 # pyixirc
+Easy way to search for stuff on http://ixirc.com/ just because.
+
 More info soon
 
 
