@@ -34,19 +34,23 @@ def get_args():
         '-c', '--chanid', type=str, help='channel id, see list:',
         required=False, default=None)
     parser.add_argument(
+        '-r', '--reverse', action='store_true', help='reverse order',
+        required=False)
+    parser.add_argument(
         '-p', '--page', action='store_true', help='page number',
         required=False)
     args = parser.parse_args()
     search = args.search
     chanid = args.chanid
     page = args.page
+    reverse = args.reverse
     conflictdate = args.chanid, args.page
     if all(conflictdate):
         sys.exit('Conflict in options: can not use \
                 page option with chanid.')
-    return search, chanid, page
+    return search, chanid, page, reverse
 
-search, chanid, page = get_args()
+search, chanid, page, reverse = get_args()
 
 
 def print_search():
@@ -54,7 +58,7 @@ def print_search():
                             chanid)).json()
     jsonData = json.loads(str(weathers).replace("'", '"'))
     jsons = jsonData['results']
-    for er in jsons:
+    for er in reversed(jsons):
         title = er['name']
         packn = er['n']
         botn = er['uname']
