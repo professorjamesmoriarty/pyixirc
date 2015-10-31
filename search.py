@@ -72,8 +72,10 @@ def print_search():
 
 
 def main():
-    print_search()
-
+    try:
+        print_search()
+    except KeyError:
+        print("No Result Found")
 
 if __name__ == '__main__':
     main()
