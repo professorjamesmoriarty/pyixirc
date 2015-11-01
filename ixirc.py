@@ -68,7 +68,7 @@ def print_search():
         print(tcolors.RED + title + tcolors.GREEN + " from", chan,
               tcolors.BLUE + "on", netw + tcolors.ENDC)
         print(tcolors.RED + size + tcolors.YELLOW + " /msg",
-              botn, "xdcc send", packn)
+              botn, "xdcc send", packn, tcolors.ENDC)
 
 
 def main():
