@@ -38,7 +38,7 @@ def get_args():
         '-r', '--reverse', action='store_true', help='reverse order',
         required=False)
     parser.add_argument(
-        '-p', '--page', action='store_true', help='page number',
+        '-p', '--page', type=str, help='page number',
         required=False)
     args = parser.parse_args()
     search = args.search
@@ -55,8 +55,8 @@ search, chanid, page, reverse = get_args()
 
 
 def print_search():
-    searches = requests.get("http://ixirc.com/api/?q=%s&cid=%s" % (search,
-                            chanid)).json()
+    searches = requests.get("http://ixirc.com/api/?q=%s&cid=%s&pn=%s" % (search,
+                            chanid, page)).json()
     jsonData = json.loads(str(searches).replace("'", '"'))
     jsons = jsonData['results']
     for item in reversed(jsons):
@@ -70,6 +70,7 @@ def print_search():
               tcolors.BLUE + "on", netw + tcolors.ENDC)
         print(tcolors.RED + size + tcolors.YELLOW + " /msg",
               botn, "xdcc send", packn, tcolors.ENDC)
+        print("---------------------------------------------")
 
 
 def main():
