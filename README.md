@@ -13,3 +13,4 @@ More info soon
 - [ ] alternate colors of results
 - [ ] possibly turnicate long results (as an option)
 - [ ] filter results (example nothing with |p| )
+- [ ] pacakge?
