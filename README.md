@@ -8,8 +8,8 @@ More info soon
 - [ ] create setup.py
 - [ ] more complete help info
 - [ ] copy /msg to clipboard from result
-- [ ] search different pages
-- [ ] reverse order
+- [*] search different pages
+- [*] reverse order
 - [ ] alternate colors of results
 - [ ] possibly turnicate long results (as an option)
 - [ ] filter results (example nothing with |p| )
