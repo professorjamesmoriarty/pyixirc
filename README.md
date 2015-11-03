@@ -10,6 +10,7 @@ More info soon
 - [ ] copy /msg to clipboard from result
 - [*] search different pages
 - [*] reverse order
+- [ ] consider some type of weechat integration
 - [ ] alternate colors of results
 - [ ] possibly turnicate long results (as an option)
 - [ ] filter results (example nothing with |p| )
