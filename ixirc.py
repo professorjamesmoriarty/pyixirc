@@ -55,12 +55,16 @@ def get_args():
 searchterm, chanid, page, reverse = get_args()
 
 
-def print_search():
+def do_search():
     searches = requests.get("http://ixirc.com/api/?q=%s&cid=%s&pn=%s" % (
         searchterm, chanid, page)).json()
     jsondata = json.loads(str(searches).replace("'", '"'))
     jsons = jsondata['results']
-    for item in reversed(jsons):
+    return jsons
+
+
+def print_search():
+    for item in reversed(do_search()):
         title = item['name']
         packn = item['n']
         botn = item['uname']
@@ -71,6 +75,15 @@ def print_search():
               termcolors.BLUE + "on", netw + termcolors.ENDC)
         print(termcolors.RED + size + termcolors.YELLOW + " /msg",
               botn, "xdcc send", packn, termcolors.ENDC)
+        print("---------------------------------------------")
+
+
+def print_pageinfo():
+    for item in do_search():
+        results = item['c']
+        pagecount = item['pc']
+        print(termcolors.RED + results + termcolors.GREEN + " results",
+              termcolors.BLUE + "on total of ", pagecount + termcolors.ENDC)
         print("---------------------------------------------")
 
 
