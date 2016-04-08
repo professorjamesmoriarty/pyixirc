@@ -1,4 +1,8 @@
-# pyixirc
+pyixirc [![Build Status][BS img]][Build Status]
+=================
+[Build Status]: https://travis-ci.org/shaggytwodope/pyixirc
+[BS img]: https://api.travis-ci.org/shaggytwodope/pyixirc.png
+
 Easy way to search for stuff on http://ixirc.com/ just because.
 
 More info soon
