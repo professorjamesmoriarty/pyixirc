@@ -25,22 +25,22 @@ def get_args():
     """get all args"""
     parser = argparse.ArgumentParser(
         description='Simple cli search for ixirc',
-        epilog="Made by shaggy")
+        epilog="Made by ShaggyTwoDope")
     parser.add_argument(
         '-V', '-v', '--version', action='version',
         version='%(prog)s ' + "0.1")
     parser.add_argument(
         '-s', '--searchterm', type=str, help='search string',
-        required=False, default=None)
+        required=True, default=None)
     parser.add_argument(
         '-c', '--chanid', type=str, help='channel id, see list:',
-        required=False, default=None)
+        required=False)
     parser.add_argument(
         '-r', '--reverse', action='store_true', help='reverse order',
         required=False)
     parser.add_argument(
         '-p', '--page', type=str, help='page number',
-        required=False)
+        required=False, default=0)
     args = parser.parse_args()
     searchterm = args.searchterm
     chanid = args.chanid
@@ -50,6 +50,10 @@ def get_args():
     # if all(conflictdate):
     #     sys.exit('Conflict in options: can not use \
     #             page option with chanid.')
+    if chanid == "mg":
+        chanid = 92
+    elif chanid == "elite":
+        chanid = 275
     return searchterm, chanid, page, reverse
 
 searchterm, chanid, page, reverse = get_args()
