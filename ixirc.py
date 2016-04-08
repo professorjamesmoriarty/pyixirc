@@ -46,10 +46,10 @@ def get_args():
     chanid = args.chanid
     page = args.page
     reverse = args.reverse
-    #conflictdate = args.chanid, args.page
-    #if all(conflictdate):
-    #    sys.exit('Conflict in options: can not use \
-    #            page option with chanid.')
+    # conflictdate = args.chanid, args.page
+    # if all(conflictdate):
+    #     sys.exit('Conflict in options: can not use \
+    #             page option with chanid.')
     return searchterm, chanid, page, reverse
 
 searchterm, chanid, page, reverse = get_args()
