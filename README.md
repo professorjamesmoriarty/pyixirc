@@ -9,6 +9,7 @@ More info soon
 
 
 # TODO & IDEAS
+- [ ] add channels list
 - [ ] create setup.py
 - [ ] more complete help info
 - [ ] copy /msg to clipboard from result
