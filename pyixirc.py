@@ -23,24 +23,35 @@ class termcolors:
 
 def get_args():
     """get all args"""
-    parser = argparse.ArgumentParser(
-        description='Simple cli search for ixirc',
-        epilog="Made by ShaggyTwoDope")
-    parser.add_argument(
-        '-V', '-v', '--version', action='version',
-        version='%(prog)s ' + "0.1")
-    parser.add_argument(
-        '-s', '--searchterm', type=str, help='search string',
-        required=True, default=None)
-    parser.add_argument(
-        '-c', '--chanid', type=str, help='channel id, see list:',
-        required=False)
-    parser.add_argument(
-        '-r', '--reverse', action='store_true', help='reverse order',
-        required=False)
-    parser.add_argument(
-        '-p', '--page', type=str, help='page number',
-        required=False, default=0)
+    parser = argparse.ArgumentParser(description='Simple cli search for ixirc',
+                                     epilog="Made by ShaggyTwoDope")
+    parser.add_argument('-V',
+                        '-v',
+                        '--version',
+                        action='version',
+                        version='%(prog)s ' + "0.1")
+    parser.add_argument('-s',
+                        '--searchterm',
+                        type=str,
+                        help='search string',
+                        required=True,
+                        default=None)
+    parser.add_argument('-c',
+                        '--chanid',
+                        type=str,
+                        help='channel id, see list:',
+                        required=False)
+    parser.add_argument('-r',
+                        '--reverse',
+                        action='store_true',
+                        help='reverse order',
+                        required=False)
+    parser.add_argument('-p',
+                        '--page',
+                        type=str,
+                        help='page number',
+                        required=False,
+                        default=0)
     args = parser.parse_args()
     searchterm = args.searchterm
     chanid = args.chanid
@@ -56,12 +67,13 @@ def get_args():
         chanid = 275
     return searchterm, chanid, page, reverse
 
+
 searchterm, chanid, page, reverse = get_args()
 
 
 def do_search():
-    searches = requests.get("http://ixirc.com/api/?q=%s&cid=%s&pn=%s" % (
-        searchterm, chanid, page)).json()
+    searches = requests.get("http://ixirc.com/api/?q=%s&cid=%s&pn=%s" %
+                            (searchterm, chanid, page)).json()
     jsondata = json.loads(str(searches).replace("'", '"'))
     jsons = jsondata['results']
     return jsons
@@ -77,8 +89,8 @@ def print_search():
         size = item['szf']
         print(termcolors.RED + title + termcolors.GREEN + " from", chan,
               termcolors.BLUE + "on", netw + termcolors.ENDC)
-        print(termcolors.RED + size + termcolors.YELLOW + " /msg",
-              botn, "xdcc send", packn, termcolors.ENDC)
+        print(termcolors.RED + size + termcolors.YELLOW + " /msg", botn,
+              "xdcc send", packn, termcolors.ENDC)
         print("---------------------------------------------")
 
 
@@ -96,6 +108,7 @@ def main():
         print_search()
     except KeyError:
         print("No Result Found")
+
 
 if __name__ == '__main__':
     main()
