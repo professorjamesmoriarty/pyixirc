@@ -72,7 +72,7 @@ searchterm, chanid, page, reverse = get_args()
 
 
 def do_search():
-    searches = requests.get("http://ixirc.com/api/?q=%s&cid=%s&pn=%s" %
+    searches = requests.get("https://ixirc.com/api/?q=%s&cid=%s&pn=%s" %
                             (searchterm, chanid, page)).json()
     jsondata = json.loads(str(searches).replace("'", '"'))
     jsons = jsondata['results']
@@ -83,15 +83,17 @@ def print_search():
     for item in reversed(do_search()):
         title = item['name']
         packn = item['n']
-        botn = item['uname']
-        chan = item['cname']
-        netw = item['naddr']
-        size = item['szf']
-        print(termcolors.RED + title + termcolors.GREEN + " from", chan,
-              termcolors.BLUE + "on", netw + termcolors.ENDC)
-        print(termcolors.RED + size + termcolors.YELLOW + " /msg", botn,
-              "xdcc send", packn, termcolors.ENDC)
-        print("---------------------------------------------")
+        botn = item['uname'] if "uname" in item else None
+        chan = item['cname'] if "cname" in item else None
+        netw = item['nname'] if "nname" in item else item['naddr'] if "naddr" in item else None
+        size = item['szf'] if "szf" in item else None
+
+        if title and packn and botn and chan and netw:
+            print(termcolors.RED + title + termcolors.GREEN + " from", chan,
+                  termcolors.BLUE + "on", netw + termcolors.ENDC)
+            print(termcolors.RED + size + termcolors.YELLOW + " /msg", botn,
+                  "xdcc send", packn, termcolors.ENDC)
+            print("---------------------------------------------")
 
 
 def print_pageinfo():
